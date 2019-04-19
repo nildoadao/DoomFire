@@ -91,9 +91,7 @@ namespace DoomFire
             for (int line = 1; line < lines; line++)
             {
                 for (int column = 0; column < columns; column++)
-                {
                     fireArray[line, column] =  0;
-                }
             }
         }
 
@@ -126,13 +124,11 @@ namespace DoomFire
             for(int column = 0; column < columns; column++)
             {
                 for(int line = 0; line < lines - 1; line++)
-                {
-                    UpdateFireCell(line, column, windFlow, random);
-                }
+                    UpdateFireCell(line, column, random);
             }
         }
 
-        private void UpdateFireCell(int line, int column, WindDirection direction, Random random)
+        private void UpdateFireCell(int line, int column, Random random)
         {
             int decay = random.Next(0, baseDecay);
             int wind = random.Next(1, 100);
@@ -147,7 +143,7 @@ namespace DoomFire
                     break;
 
                 case WindDirection.Right:
-                    if (wind >= 75 && column < columns - 1)
+                    if (wind >= 50 && column < columns - 1)
                         fireArray[line, column + 1] = fireArray[line + 1, column] - decay > 0 ? fireArray[line + 1, column] - decay : 0;
                     else
                         fireArray[line, column] = fireArray[line + 1, column] - decay > 0 ? fireArray[line + 1, column] - decay : 0;
@@ -179,17 +175,13 @@ namespace DoomFire
         public void StopFire()
         {
             for(int column = 0; column < columns; column++)
-            {
                 fireArray[lines - 1, column] = 0;
-            }
         }
 
         public void StartFire()
         {
             for (int column = 0; column < columns; column++)
-            {
                 fireArray[lines - 1, column] = 35;
-            }
         }
     }
 }

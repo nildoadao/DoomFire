@@ -23,7 +23,7 @@ namespace DoomFire
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            fire = new Fire(120, 80);
+            fire = new Fire(60, 40);
             timer = new Timer();
             timer.Interval = 50;
             timer.Tick += Timer_Tick;
